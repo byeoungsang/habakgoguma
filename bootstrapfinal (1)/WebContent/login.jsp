@@ -15,7 +15,7 @@
 		font-family: 'Nanum Pen Script', cursive;
 	}
 
-
+	/* 멍청이 */
 
 
 	body,ul {
