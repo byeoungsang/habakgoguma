@@ -1,0 +1,366 @@
+<!-- Index 페이지에 포함되는 Header 페이지를 작성하는 곳 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>header.html</title>
+<style type="text/css">
+/*@import url(//fonts.googleapis.com/earlyaccess/hanna.css);*/
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+	* {
+	/*	font-family: 'Hanna', sans-serif;*/
+		font-family: 'Nanum Brush Script', serif;
+	}
+
+
+
+	body,ul {
+		margin: 0px;
+		padding: 0px;
+	
+	}
+	ul {
+		list-style-type: none;
+	}
+	a {
+		text-decpration: none;
+	}
+	#header_wrap {
+		box-sizing: border-box;
+	}
+	/* header(로그인, 회원가입) */
+
+	#header_line1 {
+		height:30px;
+		width: 100%;
+		background-color: #08182b;
+		box-sizing: border-box;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+					0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+    #header_line1_in {
+   		width:1200px;
+   		margin: 0 auto;
+   	
+   	}
+   	#header_line1_ul{
+   		float:right;
+   		
+   	}
+   	#header_line1_ul > li > a{
+   		
+   		color:white;
+	   	font-size:12px;
+	   	font-weight:bold;
+	   	height: 30px;
+	   	padding: 0 10px;
+	   	display: inline-block;
+	   	line-height:30px;
+   	}
+   	#header_line1_ul > li{
+	   	float:left;   /* 태그들을 좌측, 우측 유동배치*/
+	   	height:30px;
+	   	position: relative;
+   	}
+   	#header_line1_ul > li:hover {    /* li태그에 마우스를 올렸을떄 동작하는 내용*/
+		background-color: #ee2560;
+	}
+	#header_line1_ul > li:hover #header_line1_dropdown {
+		/* #header_line_ul > li:hover 했을때
+		#header_line1_dropdown을 어떻게 변경할지 적용 */
+		display: block;
+	}
+	#header_line1_dropdown > a{
+		display: block;
+		font-size: 12px;
+		padding-left: 10px;
+		background-color:#08182b;
+		color: pink;
+		padding: 5px 10px;
+		border-bottom: 1px solid white;
+		width: 82px;
+	}
+	#header_line1_dropdown {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+					0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		/*숨기는 효과*/
+		display: none;         /* 아에 존재자체 없는거고*/
+		/*visibility: false;       있는데 안보임 */
+		position: absolute;
+		z-index:1;
+	}
+	#header_line1_dropdown > a:hover {
+		background-color:#52616a;
+		text-decoration: underline;
+	}
+	#header_line1_mypage {
+		width: 82px;
+		text-align: center;
+	}
+	
+	/* 로고이미지, 검색창 */
+	#header_line2 {
+	width: 70%;
+	height: 80px;
+	margin: 15px auto;
+	box-sizing: border-box;
+	}
+	#header_line2 img {
+		display: inline-block;
+		margin-top: 8px;
+	}
+	/* line2 검색창 */
+	#header_line2_wrap_search {
+		height: 34px;
+		display: inline-block;
+		float:right;
+		
+	}
+	#header_line2_search {
+		border: 2px solid #45d9fd;
+		height: 34px;
+		box-sizing: border-box;
+		position: relative;
+	}
+	input#search_keyword {
+		width: 353px;
+		height: 30px;
+		font-size: 13px;
+		box-sizing: border-box;
+		border: 0px;
+		padding-left: 10px;
+	}
+	input#search_btn {
+		width: 55px;
+		height: 30px;
+		background-color: #45d9fd;
+		color: white;
+		font-size: 13px;
+		border: 0px;
+		position: absolute;
+		right: 0px;
+		top: 0px;
+	}
+	/* 네비게이션 메뉴바*/
+	#header_line3 {
+		width: 100%;
+		height: 49px;
+		background-color: #45d9fd;
+		box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0, 4px 20px 0 rgba(0, 0, 0, 0.19);
+		box-sizing: border-box;
+	}
+	#header_line3_ul > li {
+		float: left;
+	}
+	#header_line3_ul >li:hover {
+		background-color: #ee2560;
+		border-top: 5px solid white;
+	}
+	
+	#header_line3_ul > li:hover #header_line3_dropdown {
+		display:block;
+	
+	}
+	#header_line3_ul > li > a {
+		width: 163px;
+		color: white;
+		line-height: 49px;
+		font-size: 20px;
+		padding: 0 13px;
+		display: inline-block;
+		height: 49px;
+		text-align: center;
+	}
+	#header_line3_in{
+	width: 90%;
+	margin: 0 auto;
+	}
+	#header_line3_dropdown {
+		position: relative;
+		background-color: gray;
+		text-align: center;
+		display: none; 
+		
+	}
+	#header_line3_dropdown2 {
+		position: absolute;
+		left: 189px;
+		top: 0px;
+		width: 39px;
+		display: block;
+		display: none;
+		font-size : 15px;
+		background-color: pink;
+	}
+	#header_line3_dropdown3 {
+		position: absolute;
+		left: 189px;
+		top: 0px;
+		width: 40px;
+		display: block;
+		display: none;
+		font-size : 15px;
+		background-color: pink;
+	}
+	#header_line3_dropdown4 {
+		position: absolute;
+		left: 189px;
+		top: 0px;
+		width: 40px;
+		display: block;
+		display: none;
+		font-size : 15px;
+		background-color: pink;
+	}
+	#header_line3_dropdown5 {
+		position: absolute;
+		left: 189px;
+		top: 0px;
+		width: 40px;
+		display: block;
+		display: none;
+		font-size : 15px;
+		background-color: pink;
+	
+	}
+	#header_line3_dropdown > a {
+		background-color: black;
+		color: white;
+		display: block;
+		width: 97px;
+		text-align: center;
+		padding: 5px 0px;
+	}
+
+	#header_line3_dropdown2 > a:hover {
+		background-color: gray;
+	}
+	#header_line3_dropdown > ul > li > a {
+		color: white;
+		width: 87px;
+		display: inline-block;
+		padding: 5px 0;
+		text-align: center;
+	}
+	#header_line3_dropdown > ul > li:hover {
+		background-color: red;
+	}
+	#header_line3_dropdown > ul > li:hover #header_line3_dropdown2 {
+		display: block;
+	}
+	#header_line3_dropdown > ul >li {
+		position: relative;
+	}
+	
+	#header_line3_dropdown > ul > li:hover #header_line3_dropdown3 {
+		display: block;
+	}	
+	#header_line3_dropdown3 > a:hover {
+		background-color: gray;
+	}
+	#dropdown_socks {
+		position:relative;
+	}
+	#header_line3_dropdown4 > a:hover {
+		background-color:gray;
+	}
+	#header_line3_dropdown > ul > li:hover #header_line3_dropdown4 {
+		display: block;
+	}
+	#header_line3_dropdown > ul > li:hover #header_line3_dropdown5 {
+		display:block;
+	}
+	#header_line3_dropdown5 > a:hover {
+		background-color: gray;
+	}
+</style>
+</head>
+<body>
+	<header>
+	<div id="header_wrap">
+		<div id="header_line1">	
+			<div id="header_line1_in">
+				<ul id="header_line1_ul">
+					<li><a href="login.jsp">로그인</a></li>
+					<li><a href="member.bizpoll">회원가입</a></li>
+					<li>
+					<a id="header_line1_mypage" href="">마이페이지▼</a>
+					<div id="header_line1_dropdown">
+						<a href="#">주문/배송조회</a>
+						<a href="#">장바구니</a>
+						<a href="#">위시리스트</a>
+						<a href="#">회원정보</a>
+					</div>
+					</li>
+					<li><a href="">고객센터</a></li>
+					
+				</ul>
+			</div>
+			</div>
+			</div>
+		<div id="header_line2">
+		<a href= "#">
+			<img id="header_logo"src="../img/4_Grayscale_logo_on_transparent_252x67.png" alt="로고">
+		</a>
+		<div id="header_line2_wrap_search">
+			<div id="header_line2_search">
+				<input id="search_keyword" type="text" placeholder="검색어를 입력하세요">
+				<input id="search_btn" type="submit" value="검색">
+				
+			</div>	
+		</div>
+		</div>
+		<div id="header_line3">
+		  <div id="header_line3_in">
+			<ul id="header_line3_ul">
+			
+			<li><a id="header_line3_og" href="">유니폼</a>
+				<div id="header_line3_dropdown" >
+					<ul>
+						<li><a href="">상의</a>
+						</li>
+								<li>
+									<a href="">하의</a>
+								</li>
+								<li>
+								<a id="dropdown_socks" href="">아동용</a>
+								</li>
+								<li><a href="">심판용</a>
+								</li>
+							</ul>					
+				</div>
+			</li>
+			<li><a id="header_line3_og" href="#">축구화</a>
+				<div id="header_line3_dropdown">
+					<ul>
+						<li><a href="">성인용</a></li>
+						<li><a href="">여성용</a></li>
+						<li><a href="">아동용</a></li>
+						<li><a href="">풋살화</a>
+					</ul>
+				</div>
+			</li>
+				
+			<li><a id="header_line3_og" href="#">축구용품</a>
+				<div id="header_line3_dropdown">
+					<ul>
+						<li><a href="">축구스타킹</a></li>
+						<li><a href="">장갑</a></li>
+						<li><a href="">경기진행용품</a></li>
+						<li><a href="">경기보조용품</a></li>
+					</ul>
+				</div>
+			</li>
+				
+			<li><a href="#">공</a></li>
+			<li><a href="#">가방</a></li>
+			<li><a href="#">특가세일</a></li>
+			</ul>
+		
+		
+		</div>
+		</div>
+	
+	</header>
+</body>
+</html>

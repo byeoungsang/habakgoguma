@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com/soccerman/mybatis/soccermanMapper.xml">
+	
+	<select id="bestView" resultType="com.soccerman.dto.ProductDTO">
+		SELECT * FROM soc_product
+	</select>	
+	
+	
+  <!-- memberDAO -->
+  <insert id="inputMember">
+  	INSERT INTO member(id, pw, name, zipcode,addr1,addr2,email, phone)
+	VALUES(#{id},#{pw},#{name},#{zipcode},#{addr1},#{addr2},#{email},#{phone})
+  </insert>
+  
+  
+  <select id="confirmID" parameterType="String" resultType="String">
+  	SELECT id FROM member 
+  	WHERE id = #{userid}
+  </select>
+  
+  <select id="confirmPW" parameterType="com.soccerman.dto.MemberDTO" resultType="String">
+  	SELECT id,pw FROM member 
+  	WHERE id =#{id} AND pw=#{pw}
+  </select>
+  
+  <select id="loginCheck" parameterType="com.soccerman.dto.MemberDTO" resultType="com.soccerman.dto.MemberDTO">
+  	SELECT * FROM member 
+  	WHERE id =#{id} AND pw=#{pw}
+  </select>
+  
+  <update id="updateMember">
+  	UPDATE member SET 
+	name=#{name},
+	phone=#{phone},
+	zipcode=#{zipcode},
+	addr1=#{addr1},
+	addr2=#{addr2},
+	email=#{email}
+	WHERE id=#{id}
+  </update>
+  
+  <update id="updatePw">
+  	UPDATE MEMBER SET 
+	pw = #{pw}
+	WHERE id = #{id}
+  </update>
+  
+  <delete id="deleteMember" parameterType = "String">
+
+		DELETE FROM member
+
+		WHERE id = #{userid}
+
+	</delete>
+	
+	<!-- ====================================================================================== -->
+	<!--  boardDAO -->
+	<select id="boardList" resultType="com.soccerman.dto.BoardDTO">
+   	<![CDATA[
+    SELECT * FROM (SELECT rownum rnum,
+                    a.*
+                    FROM ( SELECT *
+                           FROM realboard
+                           WHERE bno > 0
+                           ORDER BY bno DESC
+                           ) a
+                 )
+	 WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
+	 ]]>   
+	</select>
+	
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+			SELECT count(bno)
+			FROM realboard
+			WHERE bno > 0
+		]]>
+		 <if test='flag == "1"'>
+			                			 <![CDATA[ title LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+			                          <if test='flag == "2"'>
+			                			 <![CDATA[ content LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+			                          <if test='flag == "3"'>
+			                			 <![CDATA[ title LIKE '%'||#{keyword}||'%' OR content LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+			                          <if test='flag == "4"'>
+			                			 <![CDATA[ writer LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+	</select>
+	
+	<select id="searchList" resultType="com.soccerman.dto.BoardDTO">
+		   	<![CDATA[
+			    SELECT * FROM (SELECT rownum rnum,
+			                    a.*
+			                    FROM ( SELECT *
+			                           FROM realboard
+			                           WHERE bno > 0 AND  ]]>
+			                           
+			                           <if test='flag == "1"'>
+			                			 <![CDATA[ title LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+			                          <if test='flag == "2"'>
+			                			 <![CDATA[ content LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+			                          <if test='flag == "3"'>
+			                			 <![CDATA[ title LIKE '%'||#{keyword}||'%' OR content LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+			                          <if test='flag == "4"'>
+			                			 <![CDATA[ writer LIKE '%'||#{keyword}||'%'  ]]>
+			                          </if>
+			                          
+			                          
+			 <![CDATA[                           ORDER BY bno DESC
+			                           ) a
+			                 )
+				 WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}
+			 ]]>
+	</select>
+	
+		<select id="boardDetailView" resultType = "com.soccerman.dto.BoardDTO">
+		SELECT * FROM realboard
+		WHERE bno = #{bno}
+	</select>
+	
+	<update id="viewCnt">
+		UPDATE realboard
+			SET viewcnt = viewcnt + 1
+			WHERE bno = #{bno}
+	</update>	
+	
+	<insert id="boardInsert"  parameterType="com.soccerman.dto.BoardDTO">
+		INSERT INTO realboard(bno, title, content, writer,filename,filesize)
+		<choose>
+			<when test="content != null">
+				VALUES(seq_realboard.NEXTVAL, #{title}, #{content}, #{writer},#{filename},#{filesize})
+			</when>
+			<otherwise>
+				VALUES(seq_realboard.NEXTVAL, #{title}, #{writer},#{filename},#{filesize})
+			</otherwise>
+		</choose>
+	</insert>
+	
+	
+	
+</mapper>
